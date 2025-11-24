@@ -1,16 +1,39 @@
-# React + Vite
+**Table of Contents**
+- [Installation Guide](#installation-guide)
+- [Running The Application](#running-the-application)
+- [Useful Extentions](#useful-extentions)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Installation Guide
+1. Install node.js from https://nodejs.org/en/download
+2. Open the folder where you want to store this repository
+3. Clone the repo with `git clone https://github.com/nkim205/Phase4.git` then open the `Phase4` folder
+5. CD into the `./frontend` folder with `cd frontend/` then install its dependencies with `npm install`. This should install the `./node_modules` folder.
+6. CD out of `./frontend` then into the `./backend` folder first with `cd ..` then `cd backend/`. 
+7. Then, install the backend dependencies first with `npm init -y` then with `npm install express mysql2 cors dotenv`, this should also create a `./node_modules` folder.
 
-Currently, two official plugins are available:
+# Running The Application
+To run the application, you need to have both the front and backend running. To do so, you will need to open a second terminal, the button for which can be found in the top right of your terminal window. Simply click the `+` button to open a second terminal, and navigate between the 2 by clicking on the window you want open.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In one of the terminals, make sure you are working from the `./frontend` folder. e.g. if your command line looks like `nkim0324@Nathans-MacBook-Air Phase4 %`, that means you are working out of the `Phase4` folder. If this is the case, CD into the `./frontend` folder with `cd frontend/`.
 
-## React Compiler
+In your other terminal window, if make sure you are working out of the `./backend` folder by doing `cd backend/`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+To run the servers:
+1. In the `./frontend` folder, run `npm run dev`
+2. In the `./backend` folder, run `node server.js`
 
-## Expanding the ESLint configuration
+# Useful Extentions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Auto Rename Tag**
+  - Automatically rename paired HTML/XML tag
+- **Visual Studio Code CSS Intellisense for HTML**
+- **htmltagwrap**
+  - Wraps your text selection in HTML tags
+- **IntelliSense for CSS class names in HTML**
+  - Adds auto completion for class attributes
+- **Live Server**
+  - Auto updates your frontend when you save changes rather than having to restart the server everytime
+- **Prettier - Code formatter**
+- **Simple React Snippets**
+- **Tailwind CSS IntelliSense**
+  - Adds auto completion for TailwindCSS className attributes
