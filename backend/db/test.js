@@ -13,6 +13,7 @@ const { assignRoom } = require('./roomProcedures');
     // await testInitConnection(0);
     // await testRoomWiseView(1);
     // await testAssignRoomAndView(1);
+    await testAssignRoomFail();
 })();
 
 async function testInitConnection(type) {
@@ -49,5 +50,16 @@ async function testAssignRoomAndView(type) {
         await testRoomWiseView(type);
     } catch (e) {
         console.error(`Error: `, e)
+    }
+}
+
+// TODO: In SQL script, add more detailed error handling 
+async function testAssignRoomFail() {
+    try {   
+        const result = await assignRoom(null, 2567, 'Surgery Room');
+        console.log(`Expected failure, instead got: `, result);
+    } catch (e) {
+        // if (e.message.includes('SSN cannot be NULL')) ...
+        console.log(`Successfully caught error for NULL ssn: `, e);
     }
 }

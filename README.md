@@ -1,6 +1,8 @@
 **Table of Contents**
 - [Installation Guide](#installation-guide)
 - [Running The Application](#running-the-application)
+- [Technologies Used](#technologies-used)
+- [Team Contributions](#team-contributions)
 - [Useful Extentions](#useful-extentions)
 
 # Installation Guide
@@ -22,8 +24,11 @@ To run the servers:
 1. In the `./frontend` folder, run `npm run dev`
 2. In the `./backend` folder, run `node server.js`
 
-# Useful Extentions
+# Technologies Used
 
+# Team Contributions
+
+# Useful Extentions
 - **Auto Rename Tag**
   - Automatically rename paired HTML/XML tag
 - **Visual Studio Code CSS Intellisense for HTML**
