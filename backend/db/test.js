@@ -7,6 +7,7 @@ const { fetchDepartmentOverview } = require('./departmentQueries');
 const { fetchOutstandingChargesOverview } = require('./outstandingChargesQueries');
 const { addPatient } = require('./addPatientProcedures');
 const { recordSymptoms } = require('./recordSymptomsProcedures');
+const { assignNurseToRoom } = require('./assignNurseToRoomProcedures');
 
 /**
  * Call specific test functions. Comment out the ones you DON'T want to test.
@@ -25,7 +26,8 @@ const { recordSymptoms } = require('./recordSymptomsProcedures');
     // await testDepartmentOverviewView();
     // await testOutstandingChargesOverviewView();
     // await testAddPatient(1);
-    await testRecordSymptoms(1);
+    // await testRecordSymptoms(1);
+    await testAssignNurseToRoom(1);
 })();
 
 async function testInitConnection(type) {
@@ -163,6 +165,15 @@ async function testRecordSymptoms(type) {
     try {
         const result = await recordSymptoms('112-23-4567', 5, '2025-02-23', '08:17:21', 'Blurry vision');
         console.log(`Assign Symptoms To Patient Proc. Result:`, result);
+    } catch (e) {
+        console.error(`Error: `, e)
+    }
+}
+
+async function testAssignNurseToRoom(type) {
+    try {
+        const result = await assignNurseToRoom('123-45-6789', 1234);
+        console.log(`Assign Nurse To Room Proc. Result:`, result);
     } catch (e) {
         console.error(`Error: `, e)
     }
