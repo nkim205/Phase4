@@ -74,7 +74,7 @@ async function testAssignRoomFail() {
         const result = await assignRoom('112-23-4567', 3862, 'Surgery Room');
         console.log(`Expected failure, instead got: `, result);
     } catch (e) {
-        console.log(e.message);
+        console.error(e.message);
     }
 }
 
