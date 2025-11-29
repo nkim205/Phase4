@@ -8,6 +8,7 @@ const { fetchOutstandingChargesOverview } = require('./outstandingChargesQueries
 const { addPatient } = require('./addPatientProcedures');
 const { recordSymptoms } = require('./recordSymptomsProcedures');
 const { assignNurseToRoom } = require('./assignNurseToRoomProcedures');
+const { bookAppointment } = require('./bookAppointmentProcedures');
 
 /**
  * Call specific test functions. Comment out the ones you DON'T want to test.
@@ -173,6 +174,15 @@ async function testAssignNurseToRoom(type) {
     try {
         const result = await assignNurseToRoom('123-45-6789', 1234);
         console.log(`Assign Nurse To Room Proc. Result:`, result);
+    } catch (e) {
+        console.error(`Error: `, e)
+    }
+}
+
+async function testbookAppointment(type) {
+    try {
+        const result = await bookAppointment('698-78-2091', '2025-03-10', '09:15:00', 500);
+        console.log(`Book Appointment Proc. Result:`, result);
     } catch (e) {
         console.error(`Error: `, e)
     }
