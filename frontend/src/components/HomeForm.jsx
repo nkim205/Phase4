@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import '../index.css'
 
-const HomeForm = ({ onClose }) => {
+const HomeForm = ({ onClose, onData, onTitle }) => {
     const [view, setView] = useState("");
     const [err, setErr] = useState("");
     const viewList = ['Room wise', 'Symptoms overview', 'Medical staff', 'Department', 'Outstanding charges'];
@@ -11,6 +11,7 @@ const HomeForm = ({ onClose }) => {
         try {
             let response;
             let data;
+            let title;
 
             if (view === 'Room wise') {
                 response = await fetch('http://localhost:4000/api/rooms');
@@ -23,21 +24,20 @@ const HomeForm = ({ onClose }) => {
             } else if (view === 'Outstanding charges') {
                 response = await fetch('http://localhost:4000/api/charges');
             } else {
-                showErr("*Please select a table before viewing.");
+                setErr("*Please select a table before viewing.");
                 return;
             }
 
+            if (!response.ok) throw new Error(`Server error: ${response.status}`)
+
             data = await response.json();
             console.log(data);
+            onData(data);
+            onTitle(view);
             onClose();
         } catch (e) {
             console.log(e);
         }
-    }
-
-    const showErr = (msg) => {
-        setErr(msg);
-        setTimeout(() => setToastMsg(""), 3000);
     }
 
     return (
@@ -48,7 +48,7 @@ const HomeForm = ({ onClose }) => {
                     <li
                         key={v}
                         className='formListItem'
-                        onClick={() => (setView(v), showErr(""))}
+                        onClick={() => (setView(v), setErr(""))}
                     >
                         <span className={`flex w-4 h-4 rounded-full border-2 align-middle mr-[0.5rem] ${view === v ? 'bgGreen' : 'bg-gray-100'}`}></span>
                         <p>{v}</p>
@@ -56,9 +56,7 @@ const HomeForm = ({ onClose }) => {
                 ))}
             </ul>
 
-
             <p className='ml-[0.5rem] text-red-500 mt-4 text-[0.85rem]'>{err}</p>
-
 
             <div className='formBtnContainer'>
                 <button 
@@ -71,7 +69,7 @@ const HomeForm = ({ onClose }) => {
                 >Close</button>    
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default HomeForm;
