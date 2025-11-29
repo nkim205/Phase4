@@ -1,6 +1,6 @@
-const { fetch } = require('../db/departmentQueries');
+const { fetchDepartmentOverview } = require('../db/departmentQueries');
 
-async function get(req, res) {
+async function getDepartmentOverview(req, res) {
     try {
         const result = await fetchDepartmentOverview();
         res.json({

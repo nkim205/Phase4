@@ -1,17 +1,67 @@
 @import "tailwindcss";
 
 :root {
-  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
   font-family: sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #D9E9CF;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.modal-overlay {
+    @apply fixed w-[100vw] h-[100vh] bg-[rgba(0,0,0,0.5)] z-[999999] left-0 top-0;
+}
+
+.bgBabyGreen {
+  @apply bg-[#F1F3E0];
+}
+
+.bgLightGreen {
+  @apply bg-[#D2DCB6];
+}
+
+.bgGreen {
+  @apply bg-[#A1BC98];
+}
+
+.bgDarkGreen {
+  @apply bg-[#476141];
+}
+
+.textBabyGreen {
+  @apply text-[#F1F3E0];
+}
+
+.textLightGreen {
+  @apply text-[#D2DCB6];
+}
+
+.textGreen {
+  @apply text-[#A1BC98];
+}
+
+.textDarkGreen {
+  @apply text-[#476141];
+}
+
+.homeBtn {
+  @apply border-2 border-black py-[0.25rem] px-[1.5rem] rounded-md text-[1.5rem] bg-[#A1BC98] hover:bg-[#D2DCB6];
+}
+
+.homeForm {
+  @apply fixed flex flex-col -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4 bg-[#F1F3E0] p-[1rem] w-[90vw] md:min-w-[40vh] md:w-[40vw] h-[90vh] border md:border-2 border-[#000000] z-10 rounded-4xl;
+}
+
+.formListItem {
+  @apply flex flex-row flex-grow items-center text-[1.5rem] px-[0.5rem];
+}
+
+.formBtnContainer {
+  @apply flex flex-row justify-between px-[2rem] pb-[2rem] mt-auto text-[1.5rem] font-semibold;
+}
+
+.formBtnTemplate {
+  @apply border-2 border-black rounded-lg w-[12rem];
 }

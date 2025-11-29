@@ -1,6 +1,6 @@
-const { fetch } = require('../db/outstandingChargesQueries');
+const { fetchOutstandingChargesOverview } = require('../db/outstandingChargesQueries');
 
-async function get(req, res) {
+async function getOutstandingCharges(req, res) {
     try {
         const result = await fetchOutstandingChargesOverview();
         res.json({

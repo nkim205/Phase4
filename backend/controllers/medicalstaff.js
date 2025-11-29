@@ -1,6 +1,6 @@
-const { fetch } = require('../db/medicalQueries');
+const { fetchMedicalStaffOverview } = require('../db/medicalQueries');
 
-async function get(req, res) {
+async function getMedicalStaff(req, res) {
     try {
         const result = await fetchMedicalStaffOverview();
         res.json({
