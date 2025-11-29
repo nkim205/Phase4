@@ -20,14 +20,14 @@ const { assignNurseToRoom } = require('./assignNurseToRoomProcedures');
     // await testInitConnection(0);
     // await testRoomWiseView(1);
     // await testAssignRoomAndView(1);
-    // await testAssignRoomFail();
+    await testAssignRoomFail();
     // await testSymptomOverviewView();
     // await testMedicalStaffOverviewView();
     // await testDepartmentOverviewView();
     // await testOutstandingChargesOverviewView();
     // await testAddPatient(1);
     // await testRecordSymptoms(1);
-    await testAssignNurseToRoom(1);
+    // await testAssignNurseToRoom(1);
 })();
 
 async function testInitConnection(type) {
@@ -63,18 +63,17 @@ async function testAssignRoomAndView(type) {
         console.log(`Assign Room To Patient Proc. Result:`, result);
         await testRoomWiseView(type);
     } catch (e) {
-        console.error(`Error: `, e)
+        console.error('Error: ', e)
     }
 }
 
 // TODO: In SQL script, add more detailed error handling 
 async function testAssignRoomFail() {
     try {   
-        const result = await assignRoom(null, 2567, 'Surgery Room');
+        const result = await assignRoom('112-23-4567', 3862, 'Surgery Room');
         console.log(`Expected failure, instead got: `, result);
     } catch (e) {
-        // if (e.message.includes('SSN cannot be NULL')) ...
-        console.log(`Successfully caught error for NULL ssn: `, e);
+        console.log(e.message);
     }
 }
 
