@@ -1,11 +1,29 @@
-import { useState } from 'react';
 import '../index.css';
+
+function formatDate(date, header) {
+    if (!date) return "";
+
+    if (header.toLowerCase().includes('date')) {
+        const newDate = new Date(date);
+        return newDate.toLocaleString('en-us', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
+        });
+    } else {
+        let [hours, minutes] = date.split(':', 2);
+        hours = parseInt(hours, 10);
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        return `${hours}:${minutes} ${ampm}`
+    }
+}
 
 const ViewTable = ({ data, onClose }) => {
     if (!data || data.length === 0) return (<div>No Data Available</div>);
 
     const headers = Object.keys(data[0]);
-    console.log(headers);
+    console.log(data);
 
     return (
         <div className='flex flex-col mt-[0.25rem]'>
@@ -30,7 +48,10 @@ const ViewTable = ({ data, onClose }) => {
                                     key={h}
                                     className={`border borderGreen text-left text-[1rem] py-[0.5rem] pl-[0.5rem] ${idx % 2 != 0 ? 'bgLightGreen' : ''}`}
                                 >
-                                    {row[h]}
+                                    {
+                                        (h.toLowerCase().includes('date') || h.toLowerCase().includes('time')) ? 
+                                        formatDate(row[h], h) : row[h]
+                                    }
                                 </td>
                             ))}
                         </tr>
