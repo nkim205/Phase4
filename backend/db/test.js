@@ -9,6 +9,9 @@ const { addPatient } = require('./addPatientProcedures');
 const { recordSymptoms } = require('./recordSymptomsProcedures');
 const { assignNurseToRoom } = require('./assignNurseToRoomProcedures');
 const { bookAppointment } = require('./bookAppointmentProcedures');
+const { placeOrder } = require('./placeOrderProcedures');
+const { staffToDept } = require('./staffToDeptProcedures');
+const { addFunds } = require('./addFundsProcedures');
 
 /**
  * Call specific test functions. Comment out the ones you DON'T want to test.
@@ -21,7 +24,7 @@ const { bookAppointment } = require('./bookAppointmentProcedures');
     // await testInitConnection(0);
     // await testRoomWiseView(1);
     // await testAssignRoomAndView(1);
-    await testAssignRoomFail();
+    // await testAssignRoomFail();
     // await testSymptomOverviewView();
     // await testMedicalStaffOverviewView();
     // await testDepartmentOverviewView();
@@ -29,6 +32,7 @@ const { bookAppointment } = require('./bookAppointmentProcedures');
     // await testAddPatient(1);
     // await testRecordSymptoms(1);
     // await testAssignNurseToRoom(1);
+    await testAddFunds(1);
 })();
 
 async function testInitConnection(type) {
@@ -183,6 +187,15 @@ async function testbookAppointment(type) {
     try {
         const result = await bookAppointment('698-78-2091', '2025-03-10', '09:15:00', 500);
         console.log(`Book Appointment Proc. Result:`, result);
+    } catch (e) {
+        console.error(`Error: `, e)
+    }
+}
+
+async function testAddFunds(type) {
+    try {
+        const result = await addFunds('112-23-4567', '250');
+        console.log(`Add Funds Proc. Result:`, result);
     } catch (e) {
         console.error(`Error: `, e)
     }
