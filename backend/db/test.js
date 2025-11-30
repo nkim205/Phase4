@@ -161,7 +161,7 @@ async function testAddPatient(type) {
         const result = await addPatient('000-00-0000', 'Nathan', 'Kim', '1990-05-15', '123 Main St, Cityville, ST 12345', 10000, '404-371-2012');
         console.log(`Assign Patient To Table Proc. Result:`, result);
     } catch (e) {
-        console.error(`Error: `, e)
+        console.error(e.message);
     }
 }
 
@@ -170,7 +170,7 @@ async function testRecordSymptoms(type) {
         const result = await recordSymptoms('112-23-4567', 5, '2025-02-23', '08:17:21', 'Blurry vision');
         console.log(`Assign Symptoms To Patient Proc. Result:`, result);
     } catch (e) {
-        console.error(`Error: `, e)
+        console.error(e.message);
     }
 }
 
@@ -179,7 +179,7 @@ async function testAssignNurseToRoom(type) {
         const result = await assignNurseToRoom('123-45-6789', 1234);
         console.log(`Assign Nurse To Room Proc. Result:`, result);
     } catch (e) {
-        console.error(`Error: `, e)
+        console.error(e.message);
     }
 }
 
@@ -188,15 +188,35 @@ async function testbookAppointment(type) {
         const result = await bookAppointment('698-78-2091', '2025-03-10', '09:15:00', 500);
         console.log(`Book Appointment Proc. Result:`, result);
     } catch (e) {
-        console.error(`Error: `, e)
+        console.error(e.message);
     }
 }
+
+async function testPlaceOrder(type) {
+    try {
+        const result = await placeOrder();
+        console.log(`Place Order Proc. Result:`, result);
+    } catch (e) {
+        console.error(e.message);
+    }
+}
+// add test cases here
+
+async function testStaffToDept(type) {
+    try {
+        const result = await staffToDept();
+        console.log(`Staff To Dept Proc. Result:`, result);
+    } catch (e) {
+        console.error(e.message);
+    }
+}
+// add test cases here
 
 async function testAddFunds(type) {
     try {
         const result = await addFunds('112-23-4567', '250');
         console.log(`Add Funds Proc. Result:`, result);
     } catch (e) {
-        console.error(`Error: `, e)
+        console.error(e.message);
     }
 }

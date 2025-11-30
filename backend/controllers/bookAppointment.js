@@ -12,7 +12,7 @@ async function addPatientToAppointment(req, res) {
         const result = await bookAppointment(patientID, apptDate, apptTime, apptCost);
         res.json({ success: true, data: result });
     } catch (e) {
-        throw e;
+        res.status(400).json({ success: false, message: e.message });
     }
 }
 

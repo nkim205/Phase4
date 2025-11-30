@@ -10,7 +10,7 @@ async function addFundsToPatient(req, res) {
         const result = await addFunds(ssn, funds);
         res.json({ success: true, data: result });
     } catch (e) {
-        throw e;
+        res.status(400).json({ success: false, message: e.message });
     }
 }
 

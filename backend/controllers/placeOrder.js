@@ -16,7 +16,7 @@ async function assignOrderToPatient(req, res) {
         const result = await placeOrder(orderNumber, priority, patientID, doctorID, cost, labType, drug, dosage);
         res.json({ success: true, data: result });
     } catch (e) {
-        throw e;
+        res.status(400).json({ success: false, message: e.message });
     }
 }
 
