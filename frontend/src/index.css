@@ -5,6 +5,7 @@
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
+  background-color: #F1F3E0;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -46,8 +47,20 @@
   @apply text-[#476141];
 }
 
+.borderGreen {
+  @apply border-[#A1BC98];
+}
+
+.borderDarkGreen {
+  @apply border-[#476141];
+}
+
 .homeBtn {
   @apply border-2 border-black py-[0.25rem] px-[1.5rem] rounded-md text-[1.5rem] bg-[#A1BC98] hover:bg-[#D2DCB6];
+}
+
+.closeTableBtn {
+  @apply border-2 py-[0.25rem] px-[0.75rem] rounded-lg bg-[#A1BC98] hover:bg-[#D2DCB6];
 }
 
 .homeForm {

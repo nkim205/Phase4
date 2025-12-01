@@ -15,7 +15,7 @@ async function addPatientToTable(req, res) {
         const result = await addPatient(ssn, first_name, last_name, birthdate, address, funds, contact);
         res.json({ success: true, data: result });
     } catch (e) {
-        throw e;
+        res.status(400).json({ success: false, message: e.message });
     }
 }
 

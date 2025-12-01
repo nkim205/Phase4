@@ -10,7 +10,7 @@ async function assignNurse(req, res) {
         const result = await assignNurseToRoom(nurseID, roomNumber);
         res.json({ success: true, data: result });
     } catch (e) {
-        throw e;
+        res.status(400).json({ success: false, message: e.message });
     }
 }
 

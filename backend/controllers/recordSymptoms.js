@@ -13,7 +13,7 @@ async function addSymptomstoPatient(req, res) {
         const result = await recordSymptoms(patientID, numDays, apptDate, apptTime, symptomType);
         res.json({ success: true, data: result });
     } catch (e) {
-        throw e;
+        res.status(400).json({ success: false, message: e.message });
     }
 }
 
