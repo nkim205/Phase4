@@ -10,3 +10,4 @@ async function fetchSymptomsOverview() {
 }
 
 module.exports = { fetchSymptomsOverview }
+

@@ -21,7 +21,7 @@ const { bookAppointment } = require('./bookAppointmentProcedures');
     // await testInitConnection(0);
     // await testRoomWiseView(1);
     // await testAssignRoomAndView(1);
-    await testAssignRoomFail();
+    // await testAssignRoomFail();
     // await testSymptomOverviewView();
     // await testMedicalStaffOverviewView();
     // await testDepartmentOverviewView();
@@ -186,4 +186,5 @@ async function testbookAppointment(type) {
     } catch (e) {
         console.error(`Error: `, e)
     }
+
 }
