@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import '../index.css'
 
-const HomeForm = ({ onClose, onData, onTitle }) => {
+const HomeFormViews = ({ onClose, onData, onTitle }) => {
     const [view, setView] = useState("");
     const [err, setErr] = useState("");
     const viewList = ['Room wise', 'Symptoms overview', 'Medical staff', 'Department', 'Outstanding charges'];
     
     async function handleSubmit(e) {
         e.preventDefault();
+        
         try {
             let response;
             let data;
-            let title;
 
             if (view === 'Room wise') {
                 response = await fetch('http://localhost:4000/api/rooms');
@@ -62,7 +62,7 @@ const HomeForm = ({ onClose, onData, onTitle }) => {
                 <button 
                     onClick={handleSubmit}
                     className='formBtnTemplate homeBtn'
-                >View table</button>
+                >View Table</button>
                 <button 
                     onClick={onClose}
                     className='formBtnTemplate homeBtn'
@@ -72,4 +72,4 @@ const HomeForm = ({ onClose, onData, onTitle }) => {
     );
 };
 
-export default HomeForm;
+export default HomeFormViews;

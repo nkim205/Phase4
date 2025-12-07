@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import './index.css'
-import HomeForm from './components/HomeForm';
+import HomeFormViews from './components/HomeFormViews';
 import ViewTable from './components/ViewTable';
+import HomeFormProcedures from './components/HomeFormProcedures';
 
 const Home = () => {
-    const [showForm, setShowForm] = useState(false);
+    const [viewForm, setViewForm] = useState(false);
     const [viewData, setViewData] = useState(null);
     const [viewTitle, setViewTitle] = useState('');
+
+    const [procedureForm, setProcedureForm] = useState(false);
+    const [procedure, setProcedure] = useState("");
 
     return (
         <div className='bgBabyGreen min-w-full w-screen min-h-fit h-screen flex flex-col'>
@@ -15,18 +19,22 @@ const Home = () => {
             <div className='w-screen px-[2rem] flex flex-row gap-[1rem]'>
                 <button 
                     className='homeBtn'
-                    onClick={() => setShowForm(true)}
+                    onClick={() => setViewForm(true)}
                 >View Tables</button>
-                <button className='homeBtn'>Do Procedure</button>
+
+                <button 
+                    className='homeBtn'
+                    onClick={() => setProcedureForm(true)}
+                >Do Procedure</button>
             </div>
 
-            {showForm && (
+            {viewForm && (
                 <div className='modal-overlay'>
-                    <HomeForm 
-                        onClose={() => setShowForm(false)}
+                    <HomeFormViews 
+                        onClose={() => setViewForm(false)}
                         onData={(data) => setViewData(data)}
                         onTitle={(title) => setViewTitle(title)}
-                    ></HomeForm>
+                    ></HomeFormViews>
                 </div>
             )}
 
@@ -37,6 +45,21 @@ const Home = () => {
                         data={viewData?.data}
                         onClose={() => setViewData(null)}
                     ></ViewTable>
+                </div>
+            )}
+
+            {procedureForm && (
+                <div className='modal-overlay'>
+                    <HomeFormProcedures
+                        onClose={() => setProcedureForm(false)}
+                        onProcedure={(procedure) => setProcedure(procedure)}
+                    ></HomeFormProcedures>
+                </div>
+            )}
+
+            {procedure && (
+                <div>
+                    {procedure}
                 </div>
             )}
         </div>

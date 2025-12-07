@@ -64,7 +64,7 @@
 }
 
 .homeForm {
-  @apply fixed flex flex-col -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4 bg-[#F1F3E0] p-[1rem] w-[90vw] md:min-w-[40vh] md:w-[40vw] h-[90vh] border md:border-2 border-[#000000] z-10 rounded-4xl;
+  @apply fixed flex flex-col -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4 bg-[#F1F3E0] p-[1rem] w-[90vw] md:min-w-[40vh] md:w-[40vw] h-[90vh] border md:border-2 border-[#000000] z-10 rounded-4xl overflow-y-auto overflow-x-hidden;
 }
 
 .formListItem {
@@ -76,5 +76,24 @@
 }
 
 .formBtnTemplate {
-  @apply border-2 border-black rounded-lg w-[12rem];
+  @apply border-2 border-black py-[0.25rem] px-[1.5rem] rounded-md text-[1.25rem] bg-[#A1BC98] hover:bg-[#D2DCB6] w-[12rem];
+}
+
+.homeForm::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.homeForm::-webkit-scrollbar-track {
+    background: #D2DCB6; 
+    border-radius: 1rem;
+    margin: 2.5rem 4rem;
+}
+
+.homeForm::-webkit-scrollbar-thumb {
+    background: #A1BC98; 
+    border-radius: 1rem;
+}
+
+.homeForm::-webkit-scrollbar-thumb:hover {
+    background: #476141;
 }
