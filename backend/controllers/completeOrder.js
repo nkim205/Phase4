@@ -1,12 +1,12 @@
 const { completeOrder } = require('../db/completeOrderProcedures');
 
 async function orderCompletion(req, res) {
-    const { numOrder } = req.body;
+    const { numOrders } = req.body;
 
-    if (!numOrder) return res.status(400).json({ success: false, error: 'Missing numOrder' });
+    if (!numOrders) return res.status(400).json({ success: false, error: 'Missing number of orders' });
 
     try {
-        const result = await completeOrder(numOrder);
+        const result = await completeOrder(numOrders);
         res.json({ success: true, data: result });
     } catch (e) {
         res.status(400).json({ success: false, message: e.message });

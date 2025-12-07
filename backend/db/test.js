@@ -25,6 +25,8 @@ const { completeOrder } = require('./completeOrderProcedures');
  * As inputs to each test:
  *      0 = JSON view
  *      1 = Table view
+ * 
+ * Make sure to rerun the SQL insert init file before running tests to ensure testing on a clean slate each time.
  */
 (async () => {
     // await testInitConnection(0);
@@ -44,7 +46,7 @@ const { completeOrder } = require('./completeOrderProcedures');
     // await testReleaseRoom(1);
     // await testremovePatient(1);
     // await testremoveStaffFromDepartment(1);
-    // await testcompleteAppointment(1);
+    await testcompleteAppointment(1);
     // await testcompleteOrder(1);
 })();
 
