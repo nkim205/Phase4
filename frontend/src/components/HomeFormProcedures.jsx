@@ -31,7 +31,9 @@ const HomeFormProcedures = ({ onClose, onProcedure }) => {
 
     return (
         <div className='homeForm'>
-            <p className='text-[2rem] font-bold textDarkGreen text-center'>Select a procedure to perform</p>       
+            <p className='text-[2rem] font-bold textDarkGreen text-center'>
+                Select a procedure to perform
+            </p>       
             <ul className='flex flex-col gap-4 mt-[2rem]'>
                 {procedureList.map(p => (
                     <li
@@ -45,7 +47,7 @@ const HomeFormProcedures = ({ onClose, onProcedure }) => {
                 ))}
             </ul>
 
-            <p className='ml-[0.5rem] text-red-500 mt-4 text-[0.85rem]'>{err}</p>
+            <p className='errText'>{err}</p>
 
             <div className='formBtnContainer'>
                 <button 

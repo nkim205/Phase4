@@ -97,3 +97,24 @@
 .homeForm::-webkit-scrollbar-thumb:hover {
     background: #476141;
 }
+
+.errText {
+    @apply ml-[0.5rem] text-red-500 mt-4 text-[0.85rem];
+}
+
+.inputFormTemplate {
+    @apply fixed flex flex-col -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4 bg-[#F1F3E0] p-[1rem] w-[90vw] md:min-w-[40vh] md:w-[40vw] border md:border-2 border-[#000000] z-10 rounded-4xl overflow-y-auto overflow-x-hidden;
+
+}
+
+.label {
+    @apply mr-4 text-[#476141] font-semibold;
+}
+
+.input {
+    @apply border-b border-[#83A77B];
+}
+
+.inputContainer {
+    @apply flex flex-row justify-between mt-8;
+}

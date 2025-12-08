@@ -42,7 +42,9 @@ const HomeFormViews = ({ onClose, onData, onTitle }) => {
 
     return (
         <div className='homeForm'>
-            <p className='text-[2rem] font-bold textDarkGreen text-center'>Select a table to view</p>       
+            <p className='text-[2rem] font-bold textDarkGreen text-center'>
+                Select a table to view
+            </p>       
             <ul className='flex flex-col gap-4 mt-[2rem]'>
                 {viewList.map(v => (
                     <li
@@ -56,7 +58,7 @@ const HomeFormViews = ({ onClose, onData, onTitle }) => {
                 ))}
             </ul>
 
-            <p className='ml-[0.5rem] text-red-500 mt-4 text-[0.85rem]'>{err}</p>
+            <p className='errText'>{err}</p>
 
             <div className='formBtnContainer'>
                 <button 

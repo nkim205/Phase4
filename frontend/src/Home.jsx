@@ -3,6 +3,7 @@ import './index.css'
 import HomeFormViews from './components/HomeFormViews';
 import ViewTable from './components/ViewTable';
 import HomeFormProcedures from './components/HomeFormProcedures';
+import ProcedureInputForms from './components/ProcedureInputForms';
 
 const Home = () => {
     const [viewForm, setViewForm] = useState(false);
@@ -57,9 +58,12 @@ const Home = () => {
                 </div>
             )}
 
-            {procedure && (
-                <div>
-                    {procedure}
+            {procedure != "" && (
+                <div className='modal-overlay'>
+                    <ProcedureInputForms
+                        type={procedure}
+                        onClose={() => setProcedure("")}
+                    ></ProcedureInputForms>
                 </div>
             )}
         </div>
