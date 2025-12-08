@@ -10,20 +10,18 @@ const AddFunds = ({ onClose }) => {
     const [err, setErr] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         setErr('');
 
+        // Initial input validation
         if (!data.ssn) {
             setErr('*SSN is required');
             return;
         } else if (data.ssn.length != 11) {
             setErr('*SSN must be in the format \'XXX-XX-XXXX\' (e.g. 123-45-6789)');
             return;
-        } else if (!data.funds) {
-            setErr('*Funds are required');
-            return;
-        } 
+        }
 
         for (let i = 0; i < 11; i++) {
             if (data.ssn.charAt(3) != '-' || data.ssn.charAt(6) != '-') {
@@ -36,6 +34,11 @@ const AddFunds = ({ onClose }) => {
                 return;      
             }
         }
+        
+        if (!data.funds) {
+            setErr('*Funds are required');
+            return;
+        } 
         
         const fundsInt = parseInt(data.funds, 10);
 
@@ -50,15 +53,15 @@ const AddFunds = ({ onClose }) => {
 
     return (
         <div className='inputFormTemplate h-[35vh]'>
-            <p className="text-[2rem] font-bold textDarkGreen text-center">
+            <p className="inputHeader">
                 Add Funds Input Form
             </p>
 
-            <div className="inputContainer">
+            <div className="inputContainer2">
                 <div>
                     <label
                         className="label"
-                    >Patient SSN</label>
+                    >Patient SSN:</label>
                     <input
                         type='text'
                         className="input"
@@ -71,10 +74,11 @@ const AddFunds = ({ onClose }) => {
                         disabled={loading}
                     ></input>
                 </div>
+
                 <div>
                     <label
                         className="label"
-                    >Funds</label>
+                    >Funds:</label>
                     <input
                         type='number'
                         className="input"
@@ -97,7 +101,7 @@ const AddFunds = ({ onClose }) => {
                 <button 
                     onClick={handleSubmit}
                     className='formBtnTemplate homeBtn'
-                >Input Details</button>
+                >Submit</button>
                 <button 
                     onClick={onClose}
                     className='formBtnTemplate homeBtn'

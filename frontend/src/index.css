@@ -115,6 +115,14 @@
     @apply border-b border-[#83A77B];
 }
 
-.inputContainer {
-    @apply flex flex-row justify-between mt-8;
+.inputContainer1 {
+    @apply mt-8 grid grid-cols-2;
+}
+
+.inputContainer2 {
+    @apply mt-8 grid grid-cols-2;
+}
+
+.inputHeader {
+    @apply text-[2rem] font-bold text-[#476141] text-center;
 }
