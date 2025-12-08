@@ -35,6 +35,8 @@ const AddFunds = ({ onClose }) => {
             }
         }
         
+
+        
         if (!data.funds) {
             setErr('*Funds are required');
             return;
