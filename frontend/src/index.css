@@ -56,7 +56,7 @@
 }
 
 .homeBtn {
-  @apply border-2 border-black py-[0.25rem] px-[1.5rem] rounded-md text-[1.5rem] bg-[#A1BC98] hover:bg-[#D2DCB6];
+  @apply border-2 border-black py-[0.25rem] px-[1.25rem] rounded-md text-[1.5rem] bg-[#A1BC98] hover:bg-[#D2DCB6];
 }
 
 .closeTableBtn {
@@ -76,7 +76,7 @@
 }
 
 .formBtnTemplate {
-  @apply border-2 border-black py-[0.25rem] px-[1.5rem] rounded-md text-[1.25rem] bg-[#A1BC98] hover:bg-[#D2DCB6] w-[12rem];
+  @apply border-2 border-black py-[0.25rem] px-[1.5rem] rounded-md text-[1rem] bg-[#A1BC98] hover:bg-[#D2DCB6] w-[10rem];
 }
 
 .homeForm::-webkit-scrollbar {
@@ -112,17 +112,51 @@
 }
 
 .input {
-    @apply border-b border-[#83A77B];
+    @apply border-b border-[#83A77B] flex-1 min-w-0 w-full;
 }
 
 .inputContainer1 {
-    @apply mt-8 grid grid-cols-2;
+    @apply mt-8 grid grid-cols-1 gap-4;
 }
 
 .inputContainer2 {
-    @apply mt-8 grid grid-cols-2;
+    @apply mt-8 grid grid-cols-2 gap-4;
+}
+
+.inputContainer3 {
+    @apply mt-8 grid grid-cols-3 gap-4;
 }
 
 .inputHeader {
     @apply text-[2rem] font-bold text-[#476141] text-center;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animateSlideIn {
+    animation: slideIn 0.3s ease-in;
+}
+
+@keyframes progress {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.animateProgress {
+    animation: progress 5s linear;
 }

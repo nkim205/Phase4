@@ -1,7 +1,7 @@
 const { staffToDept } = require('../db/staffToDeptProcedures');
 
 async function addStaffToDept(req, res) {
-    const { ssn, firstName, lastName, birthdate, startdate, address, staffId, salary } = req.body;
+    const { deptID, ssn, firstName, lastName, birthdate, startdate, address, staffID, salary } = req.body;
 
     if (!ssn) return res.status(400).json({ success: false, error: 'Missing ssn' });
     if (!firstName) return res.status(400).json({ success: false, error: 'Missing firstName' });
@@ -13,7 +13,7 @@ async function addStaffToDept(req, res) {
     if (!salary) return res.status(400).json({ success: false, error: 'Missing salary' });
 
     try {
-        const result = await staffToDept(ssn, firstName, lastName, birthdate, startdate, address, staffId, salary);
+        const result = await staffToDept(deptID, ssn, firstName, lastName, birthdate, startdate, address, staffID, salary);
         res.json({ success: true, data: result });
     } catch (e) {
         res.status(400).json({ success: false, message: e.message });

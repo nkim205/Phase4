@@ -1,10 +1,10 @@
 const pool = require('./connection');
 
-async function addPatient(ssn, first_name, last_name, birthdate, address, funds, contact){
+async function addPatient(ssn, fname, lname, bdate, address, funds, contact){
     try {
         const [rows] = await pool.query(
             'CALL add_patient(?, ?, ?, ?, ?, ?, ?)',
-            [ssn, first_name, last_name, birthdate, address, funds, contact]
+            [ssn, fname, lname, bdate, address, funds, contact]
         );
 
         return rows;

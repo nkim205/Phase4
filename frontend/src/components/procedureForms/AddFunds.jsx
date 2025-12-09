@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../../index.css';
 
-const AddFunds = ({ onClose }) => {
+const AddFunds = ({ onClose, onSuccess }) => {
     const [data, setData] = useState({
         ssn: '',
         funds: ''
@@ -49,14 +49,36 @@ const AddFunds = ({ onClose }) => {
             return;
         }
 
-        // setLoading(true);
-        console.log(data);
+        setLoading(true);
+
+        try {
+            const res = await fetch('http://localhost:4000/api/addFunds', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+
+            const result = await res.json();
+
+            if (result.success) {
+                console.log('Success!', result.data);
+                onClose();
+                onSuccess?.('Successfully added funds!');
+            } else {
+                setErr(result.message);
+                console.log('Failure!', result.message);    
+            }
+        } catch(e) {
+            setErr(e.message);
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
         <div className='inputFormTemplate h-[35vh]'>
             <p className="inputHeader">
-                Add Funds Input Form
+                Add Funds Form
             </p>
 
             <div className="inputContainer2">

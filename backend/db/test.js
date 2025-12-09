@@ -46,7 +46,7 @@ const { completeOrder } = require('./completeOrderProcedures');
     // await testReleaseRoom(1);
     // await testremovePatient(1);
     // await testremoveStaffFromDepartment(1);
-    await testcompleteAppointment(1);
+    // await testcompleteAppointment(1);
     // await testcompleteOrder(1);
 })();
 

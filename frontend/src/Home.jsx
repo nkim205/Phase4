@@ -4,6 +4,7 @@ import HomeFormViews from './components/HomeFormViews';
 import ViewTable from './components/ViewTable';
 import HomeFormProcedures from './components/HomeFormProcedures';
 import ProcedureInputForms from './components/ProcedureInputForms';
+import Toast from './components/Toast';
 
 const Home = () => {
     const [viewForm, setViewForm] = useState(false);
@@ -12,6 +13,11 @@ const Home = () => {
 
     const [procedureForm, setProcedureForm] = useState(false);
     const [procedure, setProcedure] = useState("");
+
+    const [toast, setToast] = useState(null);
+    const handleToast = (message) => {
+        setToast({ message })
+    }
 
     return (
         <div className='bgBabyGreen min-w-full w-screen min-h-fit h-screen flex flex-col'>
@@ -63,8 +69,16 @@ const Home = () => {
                     <ProcedureInputForms
                         type={procedure}
                         onClose={() => setProcedure("")}
+                        onSuccess={handleToast}
                     ></ProcedureInputForms>
                 </div>
+            )}
+
+            {toast && (
+                <Toast
+                    msg={toast}
+                    onClose={() => setToast(null)}
+                ></Toast>
             )}
         </div>
     );

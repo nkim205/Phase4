@@ -1,24 +1,23 @@
 import { useState } from 'react';
 import '../../index.css';
 
-const AddPatient = ({ onClose, onSuccess }) => {
+const AddStaffToDept = ({ onClose, onSuccess }) => {
     const [data, setData] = useState({
+        deptID: '',
         ssn: '',
-        fname: '',
-        lname: '',
-        bdate: '',
+        firstName: '',
+        lastName: '',
+        birthdate: '',
+        startdate: '',
         address: '',
-        funds: '',
-        contact: ''
+        staffID: '',
+        salary: ''
     });
 
     const [err, setErr] = useState("");
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async(e) => {
-        e.preventDefault();
-        setErr('');
-
         // Initial input validation
         if (!data.ssn) {
             setErr('*SSN is required');
@@ -42,63 +41,31 @@ const AddPatient = ({ onClose, onSuccess }) => {
 
 
 
-        if (!data.contact) {
-            setErr('*Contact information is required');
-            return;
-        } else if (data.contact.length != 12) {
-            setErr('*Contact must be in the format \'XXX-XXX-XXXX\' (e.g. 123-456-7890)');
+        if (!data.deptID) {
+            setErr('*Department ID is required');
             return;
         }
 
-        for (let i = 0; i < 12; i++) {
-            if (data.contact.charAt(3) != '-' || data.contact.charAt(7) != '-') {
-                setErr('*Contact must be in the format \'XXX-XXX-XXXX\' (e.g. 123-456-7890)');
-                return;
-            }
-            
-            if (i != 3 && i !=7  && isNaN(parseInt(data.contact.charAt(i), 10))) {
-                setErr('*Contact must be in the format \'XXX-XXX-XXXX\' (e.g. 123-456-7890)');
-                return;      
-            }
-        }
-        
 
 
-        if (!data.fname) {
+        if (!data.firstName) {
             setErr('*First name is required');
             return;
         }
         
-        if (!data.lname) {
+        if (!data.lastName) {
             setErr('*Last name is required');
             return;
         }
-        
-        if (!data.address) {
-            setErr('*Address is required');
-            return;
-        }
-        
-        if (!data.funds) {
-            setErr('*Funds are required');
-            return;
-        }
-
-        const fundsInt = parseInt(data.funds, 10);
-
-        if (isNaN(fundsInt) || fundsInt <= 0 || data.funds % 1 != 0) {
-            setErr('*Funds must be greater than 0 and in integer form');
-            return;
-        }
 
 
-        
-        if (!data.bdate) {
+
+        if (!data.birthdate) {
             setErr('*Birthdate is required');
             return;
         }
 
-        const inputBdate = new Date(data.bdate);
+        const inputBdate = new Date(data.birthdate);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
@@ -107,10 +74,39 @@ const AddPatient = ({ onClose, onSuccess }) => {
             return;
         }
 
+
+
+        if (!data.address) {
+            setErr('*Address is required');
+            return;
+        }
+
+
+
+        if (!data.staffID) {
+            setErr('*Staff ID is required');
+            return;
+        }
+
+
+
+        if (!data.startdate) {
+            setErr('*Start date is required');
+            return;
+        }
+
+
+
+        if (!data.salary) {
+            setErr('*Salary is required');
+            return;
+        }
+
         setLoading(true);
 
         try {
-            const res = await fetch('http://localhost:4000/api/addPatient', {
+            console.log(data);
+            const res = await fetch('http://localhost:4000/api/addStaff', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
@@ -121,7 +117,7 @@ const AddPatient = ({ onClose, onSuccess }) => {
             if (result.success) {
                 console.log('Success!', result.data);
                 onClose();
-                onSuccess?.('Successfully added patient!');
+                onSuccess?.('Successfully added staff to the department!');
             } else {
                 setErr(result.message);
                 console.log('Failure!', result.error);    
@@ -132,18 +128,18 @@ const AddPatient = ({ onClose, onSuccess }) => {
             setLoading(false);
         }
     }
-    
+
     return (
         <div className='inputFormTemplate h-[70vh]'>
             <p className='inputHeader'>
-                Add Patient Form
+                Add Staff Form
             </p>
-            
+
             <div className='inputContainer2'>
                 <div>
                     <label
                         className="label"
-                    >Patient SSN:</label>
+                    >SSN:</label>
                     <input
                         type='text'
                         className="input"
@@ -160,22 +156,21 @@ const AddPatient = ({ onClose, onSuccess }) => {
                 <div>
                     <label
                         className="label"
-                    >Contact:</label>
+                    >Department ID:</label>
                     <input
-                        type='text'
+                        type='number'
                         className="input"
-                        value={data.contact}
+                        value={data.deptID}
                         onChange={(e) => setData({
                             ...data,
-                            contact: e.target.value
+                            deptID: e.target.value
                         })}
-                        placeholder='XXX-XXX-XXXX'
                         disabled={loading}
                     ></input>
                 </div>
             </div>
 
-            <div className='inputContainer2'>
+            <div className='inputContainer3'>
                 <div>
                     <label
                         className="label"
@@ -183,10 +178,10 @@ const AddPatient = ({ onClose, onSuccess }) => {
                     <input
                         type='text'
                         className="input"
-                        value={data.fname}
+                        value={data.firstName}
                         onChange={(e) => setData({
                             ...data,
-                            fname: e.target.value
+                            firstName: e.target.value
                         })}
                         disabled={loading}
                     ></input>
@@ -199,10 +194,26 @@ const AddPatient = ({ onClose, onSuccess }) => {
                     <input
                         type='text'
                         className="input"
-                        value={data.lname}
+                        value={data.lastName}
                         onChange={(e) => setData({
                             ...data,
-                            lname: e.target.value
+                            lastName: e.target.value
+                        })}
+                        disabled={loading}
+                    ></input>
+                </div>
+
+                <div>
+                    <label
+                        className="label"
+                    >Birthdate:</label>
+                    <input
+                        type='date'
+                        className="input"
+                        value={data.birthdate}
+                        onChange={(e) => setData({
+                            ...data,
+                            birthdate: e.target.value
                         })}
                         disabled={loading}
                     ></input>
@@ -229,37 +240,54 @@ const AddPatient = ({ onClose, onSuccess }) => {
                 <div>
                     <label
                         className="label"
-                    >Funds:</label>
+                    >Staff ID:</label>
                     <input
                         type='number'
                         className="input"
-                        value={data.funds}
+                        value={data.staffID}
                         onChange={(e) => setData({
                             ...data,
-                            funds: e.target.value
+                            staffID: e.target.value
                         })}
+                        disabled={loading}
                     ></input>
                 </div>
             </div>
 
-            <div className='inputContainer1'>
+            <div className='inputContainer2'>
                 <div>
                     <label
-                        className='label'
-                    >Birthdate:</label>
+                        className="label"
+                    >Start Date:</label>
                     <input
                         type='date'
-                        className='input'
-                        value={data.bdate}
+                        className="input"
+                        value={data.startdate}
                         onChange={(e) => setData({
                             ...data,
-                            bdate: e.target.value
+                            startdate: e.target.value
                         })}
-                    >
-                    </input>
+                        disabled={loading}
+                    ></input>
+                </div>
+
+                <div>
+                    <label
+                        className="label"
+                    >Salary:</label>
+                    <input
+                        type='number'
+                        className="input"
+                        value={data.salary}
+                        onChange={(e) => setData({
+                            ...data,
+                            salary: e.target.value
+                        })}
+                        disabled={loading}
+                    ></input>
                 </div>
             </div>
-            
+
             {err && (
                 <p className='errText'>{err}</p>
             )}
@@ -278,4 +306,4 @@ const AddPatient = ({ onClose, onSuccess }) => {
     )
 }
 
-export default AddPatient;
+export default AddStaffToDept;

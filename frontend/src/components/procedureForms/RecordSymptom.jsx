@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import '../../index.css';
 
-const AddPatient = ({ onClose, onSuccess }) => {
+const RecordSymptom = ({ onClose, onSuccess }) => {
     const [data, setData] = useState({
         ssn: '',
-        fname: '',
-        lname: '',
-        bdate: '',
-        address: '',
-        funds: '',
-        contact: ''
+        numDays: '',
+        apptDate: '',
+        apptTime: '',
+        symptomType: ''
     });
 
     const [err, setErr] = useState("");
@@ -27,7 +25,7 @@ const AddPatient = ({ onClose, onSuccess }) => {
             setErr('*SSN must be in the format \'XXX-XX-XXXX\' (e.g. 123-45-6789)');
             return;
         }
-
+        
         for (let i = 0; i < 11; i++) {
             if (data.ssn.charAt(3) != '-' || data.ssn.charAt(6) != '-') {
                 setErr('*SSN must be in the format \'XXX-XX-XXXX\' (e.g. 123-45-6789)');
@@ -42,75 +40,52 @@ const AddPatient = ({ onClose, onSuccess }) => {
 
 
 
-        if (!data.contact) {
-            setErr('*Contact information is required');
-            return;
-        } else if (data.contact.length != 12) {
-            setErr('*Contact must be in the format \'XXX-XXX-XXXX\' (e.g. 123-456-7890)');
+        if (!data.numDays) {
+            setErr('*Number of days is required');
             return;
         }
 
-        for (let i = 0; i < 12; i++) {
-            if (data.contact.charAt(3) != '-' || data.contact.charAt(7) != '-') {
-                setErr('*Contact must be in the format \'XXX-XXX-XXXX\' (e.g. 123-456-7890)');
-                return;
-            }
-            
-            if (i != 3 && i !=7  && isNaN(parseInt(data.contact.charAt(i), 10))) {
-                setErr('*Contact must be in the format \'XXX-XXX-XXXX\' (e.g. 123-456-7890)');
-                return;      
-            }
-        }
-        
+        const daysInt = parseInt(data.numDays, 10);
 
-
-        if (!data.fname) {
-            setErr('*First name is required');
-            return;
-        }
-        
-        if (!data.lname) {
-            setErr('*Last name is required');
-            return;
-        }
-        
-        if (!data.address) {
-            setErr('*Address is required');
-            return;
-        }
-        
-        if (!data.funds) {
-            setErr('*Funds are required');
-            return;
-        }
-
-        const fundsInt = parseInt(data.funds, 10);
-
-        if (isNaN(fundsInt) || fundsInt <= 0 || data.funds % 1 != 0) {
-            setErr('*Funds must be greater than 0 and in integer form');
+        if (isNaN(daysInt) || daysInt <= 0 || data.numDays % 1 != 0) {
+            setErr('*Number of days must be greater than 0 and in integer form');
             return;
         }
 
 
-        
-        if (!data.bdate) {
-            setErr('*Birthdate is required');
+
+        if (!data.apptDate) {
+            setErr('*Appointment date is required');
             return;
         }
 
-        const inputBdate = new Date(data.bdate);
+        const inputDate = new Date(data.apptDate);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        if (inputBdate > today) {
-            setErr('*Birthdate cannot be in the future');
+        if (inputDate > today) {
+            setErr('*Appointment date cannot be in the future');
+            return;
+        }
+
+
+
+        if (!data.apptTime) {
+            setErr('*Appointment time is required');
+            return;
+        }
+
+
+
+        if (!data.symptomType) {
+            setErr('*Symptom cannot be blank');
             return;
         }
 
         setLoading(true);
 
         try {
-            const res = await fetch('http://localhost:4000/api/addPatient', {
+            const res = await fetch('http://localhost:4000/api/recordSymptom', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
@@ -121,7 +96,7 @@ const AddPatient = ({ onClose, onSuccess }) => {
             if (result.success) {
                 console.log('Success!', result.data);
                 onClose();
-                onSuccess?.('Successfully added patient!');
+                onSuccess?.('Successfully recorded symptom!');
             } else {
                 setErr(result.message);
                 console.log('Failure!', result.error);    
@@ -132,13 +107,13 @@ const AddPatient = ({ onClose, onSuccess }) => {
             setLoading(false);
         }
     }
-    
+
     return (
-        <div className='inputFormTemplate h-[70vh]'>
+        <div className='inputFormTemplate h-[60vh]'>
             <p className='inputHeader'>
-                Add Patient Form
+                Record Symptom Form
             </p>
-            
+
             <div className='inputContainer2'>
                 <div>
                     <label
@@ -160,106 +135,72 @@ const AddPatient = ({ onClose, onSuccess }) => {
                 <div>
                     <label
                         className="label"
-                    >Contact:</label>
-                    <input
-                        type='text'
-                        className="input"
-                        value={data.contact}
-                        onChange={(e) => setData({
-                            ...data,
-                            contact: e.target.value
-                        })}
-                        placeholder='XXX-XXX-XXXX'
-                        disabled={loading}
-                    ></input>
-                </div>
-            </div>
-
-            <div className='inputContainer2'>
-                <div>
-                    <label
-                        className="label"
-                    >First Name:</label>
-                    <input
-                        type='text'
-                        className="input"
-                        value={data.fname}
-                        onChange={(e) => setData({
-                            ...data,
-                            fname: e.target.value
-                        })}
-                        disabled={loading}
-                    ></input>
-                </div>
-
-                <div>
-                    <label
-                        className="label"
-                    >Last Name:</label>
-                    <input
-                        type='text'
-                        className="input"
-                        value={data.lname}
-                        onChange={(e) => setData({
-                            ...data,
-                            lname: e.target.value
-                        })}
-                        disabled={loading}
-                    ></input>
-                </div>
-            </div>
-
-            <div className='inputContainer2'>
-                <div>
-                    <label
-                        className="label"
-                    >Address:</label>
-                    <input
-                        type='text'
-                        className="input"
-                        value={data.address}
-                        onChange={(e) => setData({
-                            ...data,
-                            address: e.target.value
-                        })}
-                        disabled={loading}
-                    ></input>
-                </div>
-
-                <div>
-                    <label
-                        className="label"
-                    >Funds:</label>
+                    >Number of Days:</label>
                     <input
                         type='number'
                         className="input"
-                        value={data.funds}
+                        value={data.numDays}
                         onChange={(e) => setData({
                             ...data,
-                            funds: e.target.value
+                            numDays: e.target.value
                         })}
                     ></input>
+                </div>
+            </div>
+
+            <div className='inputContainer2'>
+                <div>
+                    <label
+                        className='label'
+                    >Appointment Date:</label>
+                    <input
+                        type='date'
+                        className='input'
+                        value={data.apptDate}
+                        onChange={(e) => setData({
+                            ...data,
+                            apptDate: e.target.value
+                        })}
+                    >
+                    </input>
+                </div>
+
+                <div>
+                    <label
+                        className='label'
+                    >Appointment Time:</label>
+                    <input
+                        type='time'
+                        step='1'
+                        className='input'
+                        value={data.apptTime}
+                        onChange={(e) => setData({
+                            ...data,
+                            apptTime: e.target.value
+                        })}
+                    >
+                    </input>
                 </div>
             </div>
 
             <div className='inputContainer1'>
                 <div>
                     <label
-                        className='label'
-                    >Birthdate:</label>
+                        className="label"
+                    >Symptom Type:</label>
                     <input
-                        type='date'
-                        className='input'
-                        value={data.bdate}
+                        type='text'
+                        className="input"
+                        value={data.symptomType}
                         onChange={(e) => setData({
                             ...data,
-                            bdate: e.target.value
+                            symptomType: e.target.value
                         })}
-                    >
-                    </input>
+                        disabled={loading}
+                    ></input>
                 </div>
             </div>
-            
+
             {err && (
                 <p className='errText'>{err}</p>
             )}
@@ -278,4 +219,4 @@ const AddPatient = ({ onClose, onSuccess }) => {
     )
 }
 
-export default AddPatient;
+export default RecordSymptom;
