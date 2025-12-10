@@ -39,6 +39,9 @@ app.use('/api/placeOrder', assignOrderToPatient);
 const addStaffToDept = require('./routes/addStaffToDept');
 app.use('/api/addStaff', addStaffToDept);
 
+const assignNurse = require('./routes/assignNurse');
+app.use('/api/assignNurse', assignNurse);
+
 
 
 const PORT = process.env.PORT || 4000;

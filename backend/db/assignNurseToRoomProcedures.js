@@ -10,7 +10,7 @@ async function assignNurseToRoom(nurseID, roomNumber){
         return rows;
     } catch (e) {
         throw e;
-    }
+    } 
 }
 
 module.exports = { assignNurseToRoom };
