@@ -27,7 +27,7 @@ async function assignRoomToPatient(req, res) {
         const result = await assignRoom(ssn, roomNumber, roomType);
         res.json({ success: true, data: result });
     } catch (e) {
-        res.status(400).json({ success: false, error: e.message });
+        res.status(400).json({ success: false, message: e.message });
     }
 }
 

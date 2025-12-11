@@ -1,13 +1,13 @@
 const { removeStaffFromDepartment } = require('../db/removeStaffFromDepartmentProcedures');
 
 async function staffRemoval(req, res) {
-    const { ssn } = req.body;
+    const { ssn, deptID } = req.body;
 
     if (!ssn) return res.status(400).json({ success: false, error: 'Missing ssn' });
     if (!deptID) return res.status(400).json({ success: false, error: 'Missing deptID' });
 
     try {
-        const result = await removePatient(ssn, deptID);
+        const result = await removeStaffFromDepartment(ssn, deptID);
         res.json({ success: true, data: result });
     } catch (e) {
         res.status(400).json({ success: false, message: e.message });

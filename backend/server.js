@@ -42,6 +42,23 @@ app.use('/api/addStaff', addStaffToDept);
 const assignNurse = require('./routes/assignNurse');
 app.use('/api/assignNurse', assignNurse);
 
+const assignRoomToPatient = require('./routes/assignRoom');
+app.use('/api/assignRoom', assignRoomToPatient);
+
+const assignDoctor = require('./routes/assignDoctor');
+app.use('/api/assignDoctor', assignDoctor);
+
+const manageDept = require('./routes/manageDepartment');
+app.use('/api/manageDepartment', manageDept);
+
+const roomRelease = require('./routes/releaseRoom');
+app.use('/api/releaseRoom', roomRelease);
+
+const patientRemoval = require('./routes/removePatient');
+app.use('/api/removePatient', patientRemoval);
+
+const staffRemoval = require('./routes/removeStaffFromDept');
+app.use('/api/removeStaffFromDept', staffRemoval);
 
 
 const PORT = process.env.PORT || 4000;
