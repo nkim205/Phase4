@@ -59,15 +59,6 @@ const RecordSymptom = ({ onClose, onSuccess }) => {
             return;
         }
 
-        const inputDate = new Date(data.apptDate);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        if (inputDate > today) {
-            setErr('*Appointment date cannot be in the future');
-            return;
-        }
-
 
 
         if (!data.apptTime) {

@@ -74,7 +74,7 @@ const AssignNurseToRoom = ({ onClose, onSuccess }) => {
     }
 
     return (
-        <div className='inputFormTemplate h-[25vh]'>
+        <div className='inputFormTemplate h-[30vh]'>
             <p className='inputHeader'>
                 Assign Nurse to Room Form
             </p>

@@ -89,7 +89,7 @@ const AssignRoomToPatient = ({ onClose, onSuccess }) => {
                 Assign Room To Patient Form
             </p>
 
-            <div className='inputContainer1'>
+            <div className='inputContainer1 w-[50%]'>
                 <div>
                     <label
                         className="label"

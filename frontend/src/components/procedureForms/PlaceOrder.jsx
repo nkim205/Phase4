@@ -31,12 +31,12 @@ const PlaceOrder = ({ onClose, onSuccess }) => {
         }
 
         for (let i = 0; i < 11; i++) {
-            if (data.ssn.charAt(3) != '-' || data.ssn.charAt(6) != '-') {
+            if (data.patientID.charAt(3) != '-' || data.patientID.charAt(6) != '-') {
                 setErr('*SSN must be in the format \'XXX-XX-XXXX\' (e.g. 123-45-6789)');
                 return;
             }
             
-            if (i != 3 && i !=6  && isNaN(parseInt(data.ssn.charAt(i), 10))) {
+            if (i != 3 && i !=6  && isNaN(parseInt(data.patientID.charAt(i), 10))) {
                 setErr('*SSN must be in the format \'XXX-XX-XXXX\' (e.g. 123-45-6789)');
                 return;      
             }

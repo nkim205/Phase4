@@ -76,7 +76,7 @@
 }
 
 .formBtnTemplate {
-  @apply border-2 border-black py-[0.25rem] px-[1.5rem] rounded-md text-[0.75rem] bg-[#A1BC98] hover:bg-[#D2DCB6] w-[10rem];
+  @apply border-2 border-black py-[0.25rem] px-[1.5rem] rounded-md text-[1rem] bg-[#A1BC98] hover:bg-[#D2DCB6] w-[10rem];
 }
 
 .homeForm::-webkit-scrollbar {

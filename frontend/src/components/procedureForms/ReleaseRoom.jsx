@@ -53,12 +53,12 @@ const ReleaseRoom = ({ onClose, onSuccess }) => {
     }
 
     return (
-        <div className='inputFormTemplate h-[35vh]'>
-            <p className='inputContainer2'>
+        <div className='inputFormTemplate h-[30vh]'>
+            <p className='inputHeader'>
                 Release Room Form
             </p>
 
-            <div className='inputContainer1'>
+            <div className='inputContainer1 w-[33%]'>
                 <div>
                     <label
                         className="label"
