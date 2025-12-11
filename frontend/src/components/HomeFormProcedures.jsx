@@ -17,9 +17,8 @@ const HomeFormProcedures = ({ onClose, onProcedure }) => {
         'Manage department', 
         'Place order', 
         'Record symptom', 
-        'Release room', 
+        'Release room',     
         'Remove patient', 
-        'Remove staff', 
         'Remove staff from dept'
     ];
 

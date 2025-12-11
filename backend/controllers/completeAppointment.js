@@ -1,7 +1,7 @@
 const { completeAppointment } = require('../db/completeAppointmentProcedures');
 
 async function completionAppointment(req, res) {
-    const { ssn } = req.body;
+    const { patientID, apptDate, apptTime } = req.body;
 
     if (!patientID) return res.status(400).json({ success: false, error: 'Missing patientID' });
     if (!apptDate) return res.status(400).json({ success: false, error: 'Missing apptDate' });

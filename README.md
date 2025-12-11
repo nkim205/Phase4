@@ -2,8 +2,6 @@
 - [Installation Guide](#installation-guide)
 - [Running The Application](#running-the-application)
 - [Mini Git Guide](#mini-git-guide)
-- [Technologies Used](#technologies-used)
-- [Team Contributions](#team-contributions)
 - [Useful Extentions](#useful-extentions)
 
 # Installation Guide
@@ -33,10 +31,6 @@ To push changes:
 3. `git push`
 
 ***Make sure to pull changes before working to prevent merge conflicts and out of date files. Also make sure Phase4 is your root directory and you are not working out of the frontend or backend directories before pushing and pulling changes.***
-
-# Technologies Used
-
-# Team Contributions
 
 # Useful Extentions
 - **Auto Rename Tag**

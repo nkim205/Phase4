@@ -60,6 +60,13 @@ app.use('/api/removePatient', patientRemoval);
 const staffRemoval = require('./routes/removeStaffFromDept');
 app.use('/api/removeStaffFromDept', staffRemoval);
 
+const completionAppointment = require('./routes/completeAppointment');
+app.use('/api/completeAppointment', completionAppointment);
+
+const orderCompletion = require('./routes/completeOrders');
+app.use('/api/completeOrders', orderCompletion);
+
+
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
